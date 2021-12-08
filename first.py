@@ -2,8 +2,7 @@
 # должны ли круги исчезать с формы, так что я представляю такой вариант
 import sys
 
-from PyQt5 import uic  # Импортируем uic
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton
 from PyQt5.QtGui import QPainter, QColor, QFont
 from PyQt5.QtCore import Qt
 from random import randint
@@ -12,7 +11,8 @@ from random import randint
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setFixedSize(400, 500)
+        self.pushButton = QPushButton("НАЖМИ", self)
         self.pushButton.clicked.connect(self.active)
         self.flag = 0
 
@@ -29,8 +29,8 @@ class MainWindow(QMainWindow):
 
     def drawCircle(self, event, qp):
         SIZE = WIDTH, HEIGHT = self.width(), self.height()
-        qp.setPen(QColor("yellow"))
-        qp.setBrush(QColor("yellow"))
+        qp.setPen(QColor(randint(0, 256), randint(0, 256), randint(0, 256)))
+        qp.setBrush(QColor(randint(0, 256), randint(0, 256), randint(0, 256)))
         r = randint(1, WIDTH // 2)
         x, y = (randint(r, WIDTH - r)), (randint(r, HEIGHT - r))
         qp.drawEllipse(x, y, r, r)
