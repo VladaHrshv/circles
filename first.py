@@ -13,6 +13,7 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setFixedSize(400, 500)
         self.pushButton = QPushButton("НАЖМИ", self)
+        self.pushButton.move(150, 460)
         self.pushButton.clicked.connect(self.active)
         self.flag = 0
 
