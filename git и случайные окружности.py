@@ -1,18 +1,16 @@
 # В задаче ничего не было сказано про то,
 # должны ли круги исчезать с формы, так что я представляю такой вариант
 import sys
-
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton
 from PyQt5.QtGui import QPainter, QColor
 from random import randint
+from Ui import Ui_Form
 
 
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow, Ui_Form):
     def __init__(self):
         super().__init__()
-        self.setFixedSize(400, 500)
-        self.pushButton = QPushButton("НАЖМИ", self)
-        self.pushButton.move(150, 460)
+        self.setupUi(self)
         self.pushButton.clicked.connect(self.active)
         self.flag = 0
 
@@ -35,7 +33,6 @@ class MainWindow(QMainWindow):
         x, y = (randint(r, WIDTH - r)), (randint(r, HEIGHT - r))
         qp.drawEllipse(x, y, r, r)
         self.flag = 0
-
 
 
 def except_hook(cls, exception, traceback):
